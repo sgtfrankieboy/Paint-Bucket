@@ -56,6 +56,12 @@
     <Compile Include="FrmScale.Designer.cs">
       <DependentUpon>FrmScale.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmSplitter.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmSplitter.Designer.cs">
+      <DependentUpon>FrmSplitter.cs</DependentUpon>
+    </Compile>
     <Compile Include="GlassToolstripRenderer.cs" />
     <Compile Include="FrmMain.cs">
       <SubType>Form</SubType>
@@ -71,6 +77,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmScale.resx">
       <DependentUpon>FrmScale.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSplitter.resx">
+      <DependentUpon>FrmSplitter.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -95,6 +104,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="1337436090_gtk-missing-image.ico" />
+    <None Include="Resources\emblem-pictures.png" />
+    <None Include="Resources\1337544610_insert-image.png" />
     <None Include="Resources\chart_empty.png" />
     <None Include="Resources\door_open.png" />
     <None Include="Resources\disk.png" />

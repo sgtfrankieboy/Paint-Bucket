@@ -9,6 +9,7 @@ using System.Windows.Forms;
 
 using System.Runtime.InteropServices;
 using System.Drawing.Drawing2D;
+using System.Threading;
 
 namespace VisualBounds.Imaging.PaintBucket
 {
@@ -182,13 +183,20 @@ namespace VisualBounds.Imaging.PaintBucket
                 source = Image.FromFile(openFileDialog.FileName);
                 Preview.BackgroundImage = CreatePreview();
                 resizeImage();
+                btnColourRemover.Enabled = true;
+                btnImageSplitter.Enabled = true;
+                btnSave.Enabled = true;
+                btnToolSave.Enabled = true;
                 lblReady.Text = "Ready...";
             }
         }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-
+            if (saveFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                source.Save(saveFileDialog.FileName);
+            }
         }
 
         private void btnExit_Click(object sender, EventArgs e)
@@ -200,23 +208,6 @@ namespace VisualBounds.Imaging.PaintBucket
         {
             resizeImage();
         }
-
-
-        #region PositionInfo
-
-        private void image_MouseMove(object sender, MouseEventArgs e)
-        {
-            lblPosX.Text = e.X.ToString();
-            lblPosY.Text = e.Y.ToString();
-        }
-
-        private void image_MouseLeave(object sender, EventArgs e)
-        {
-            lblPosX.Text = "0";
-            lblPosY.Text = "0";
-        }
-
-        #endregion
 
 
         #region ImageScale
@@ -337,10 +328,20 @@ namespace VisualBounds.Imaging.PaintBucket
 
         }
 
+        private void RemoverColor(Color col)
+        {
+            Bitmap map = new Bitmap(source);
+            map.MakeTransparent(col);
+            source = map;
+            Preview.BackgroundImage = CreatePreview();
+        }
+
         private void btnImageScale_TextChanged(object sender, EventArgs e)
         {
             resizeImage();
         }
+
+        #region Settings
 
         private void statusBarToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -434,5 +435,149 @@ namespace VisualBounds.Imaging.PaintBucket
             Settings.Save();
         }
 
+#endregion
+
+        private void btnColourRemover_Click(object sender, EventArgs e)
+        {
+            if (btnColourRemover.Checked)
+                Preview.Cursor = Cursors.Cross;
+            else
+                Preview.Cursor = Cursors.Default;
+        }
+
+        Bitmap screen;
+        bool down = false;
+
+
+        private void Preview_MouseUp(object sender, MouseEventArgs e)
+        {
+            down = false;
+            if (btnColourRemover.Checked)
+            {
+                if (e.Button == System.Windows.Forms.MouseButtons.Left)
+                {
+                    RemoverColor(color);
+                }
+                else if (e.Button == System.Windows.Forms.MouseButtons.Right)
+                {
+                    color = screen.GetPixel(MousePosition.X, MousePosition.Y);
+                    btnColor.Image = CreateColorImage(color);
+                    RemoverColor(color);
+                }
+            }
+        }
+
+        private void Preview_MouseHover(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Preview_MouseEnter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Preview_MouseDown(object sender, MouseEventArgs e)
+        {
+            down = true;
+            screen = Win32API.GetDesktop();
+        }
+
+        private void Preview_MouseCaptureChanged(object sender, EventArgs e)
+        {
+        }
+
+        private void Preview_MouseMove(object sender, MouseEventArgs e)
+        {
+            lblPosX.Text = e.X.ToString();
+            lblPosY.Text = e.Y.ToString();
+
+            if (screen != null && down &&  btnColourRemover.Checked)
+            {
+                if (e.Button == System.Windows.Forms.MouseButtons.Left)
+                {
+                    RemoverColor(color);
+                }
+                else if (e.Button == System.Windows.Forms.MouseButtons.Right)
+                {
+                    color = screen.GetPixel(MousePosition.X, MousePosition.Y);
+                    btnColor.Image = CreateColorImage(color);
+                    RemoverColor(color);
+                }
+            }
+        }
+
+        private void Preview_MouseLeave(object sender, EventArgs e)
+        {
+            lblPosX.Text = "0";
+            lblPosY.Text = "0";
+        }
+
+        private void btnImageSplitter_Click(object sender, EventArgs e)
+        {
+            lblReady.Text = "Splitting Image...";
+            FrmSplitter fs = new FrmSplitter();
+            fs.ImageSize = new Size(16, 16);
+            if (fs.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                if (folderBrowserDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                {
+                    fs.Path = folderBrowserDialog.SelectedPath;
+                    fs.Source = source;
+                    Thread thread = new Thread(new ParameterizedThreadStart(splitImages));
+                    thread.Start(fs);
+                }
+                else
+                    lblReady.Text = "Ready...";
+            }
+            else
+                lblReady.Text = "Ready...";
+        }
+
+        private void splitImages(object args)
+        {
+            FrmSplitter split = (FrmSplitter)args;
+
+            int width = split.ImageSize.Width;
+            int height = split.ImageSize.Height;
+
+            int current = 0;
+            int rows = (split.Source.Width / split.ImageSize.Width);
+            int columns = (split.Source.Height / split.ImageSize.Height);
+            int total = rows * columns;
+
+            MessageBox.Show(rows.ToString() + " - " + columns.ToString() + " - " + total.ToString());
+
+            this.Invoke((MethodInvoker)delegate
+            {
+                barProgress.Maximum = total;
+            });
+
+            for (int j = 0; j < rows; j++)
+            {
+                for (int i = 0; i < columns; i++)
+                {
+                    Image curImage = new Bitmap(split.ImageSize.Width, split.ImageSize.Height);
+                    int x = i * split.ImageSize.Height;
+                    int y = j * split.ImageSize.Width;
+                    Rectangle rect = new Rectangle(new Point(x, y), split.ImageSize);
+                    using (Graphics g = Graphics.FromImage(curImage))
+                    {
+                        g.DrawImage(split.Source, 0, 0, rect, GraphicsUnit.Pixel);
+                    }
+                    curImage.Save(split.Path + @"\" + current.ToString() + "." + split.FormatString, split.Format);
+                    current++;
+                    this.Invoke((MethodInvoker)delegate
+                    {
+                        this.barProgress.Value++;
+                    });
+                }
+            }
+            this.Invoke((MethodInvoker)delegate
+            {
+                this.barProgress.Value = 0;
+                this.lblReady.Text = "Ready...";
+            });
+        }
     }
 }

@@ -60,6 +60,13 @@ namespace VisualBounds.Imaging.PaintBucket.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap _1337544610_insert_image {
+            get {
+                object obj = ResourceManager.GetObject("1337544610_insert-image", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap chart_empty {
             get {
                 object obj = ResourceManager.GetObject("chart_empty", resourceCulture);
@@ -77,6 +84,13 @@ namespace VisualBounds.Imaging.PaintBucket.Properties {
         internal static System.Drawing.Bitmap door_open {
             get {
                 object obj = ResourceManager.GetObject("door_open", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap emblem_pictures {
+            get {
+                object obj = ResourceManager.GetObject("emblem-pictures", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
