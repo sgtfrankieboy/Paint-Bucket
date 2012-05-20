@@ -7,7 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-using Microsoft.WindowsAPICodePack.Taskbar;
 using System.Runtime.InteropServices;
 using System.Drawing.Drawing2D;
 
@@ -15,8 +14,9 @@ namespace VisualBounds.Imaging.PaintBucket
 {
     public partial class FrmMain : Form
     {
-        public static TaskbarManager taskbar;
         public bool changedGlass = false;
+
+        private static Properties.Settings Settings { get { return Properties.Settings.Default; } }
 
         public static Image source;
         public static Color color = Color.Maroon;
@@ -25,15 +25,43 @@ namespace VisualBounds.Imaging.PaintBucket
         {
             InitializeComponent();
 
-            taskbar = Microsoft.WindowsAPICodePack.Taskbar.TaskbarManager.Instance;
-
             stripMenu.Renderer = new GlassToolstripRenderer();
             stripStatus.Renderer = new GlassToolstripRenderer();
             stripTools.Renderer = new GlassToolstripRenderer();
 
+
+            backgroundToolStripMenuItem.Image = CreateColorImage(Settings.Background);
+            defaultToolStripMenuItem.Image = CreateColorImage(Color.FromArgb(201, 211, 226));
+            this.BackColor = Settings.Background;
+            this.panelStatus.Visible = Settings.ViewStatusBar;
+            if (!Settings.ViewToolBar)
+                headerPanel.Height = 24;
+            lblPos.Visible = Settings.ViewStatusBarCursorPosition;
+            lblPosX.Visible = Settings.ViewStatusBarCursorPosition;
+            lblPosSep.Visible = Settings.ViewStatusBarCursorPosition;
+            lblPosY.Visible = Settings.ViewStatusBarCursorPosition;
+            barProgress.Visible = Settings.ViewStatusBarStatus;
+            lblReady.Visible = Settings.ViewStatusBarStatus;
+            btnToolOpen.Visible = Settings.ViewToolBarFileFunctions;
+            btnToolSave.Visible = Settings.ViewToolBarFileFunctions;
+            toolStripSeparator2.Visible = Settings.ViewToolBarFileFunctions;
+            btnImageScale.Visible = Settings.ViewToolBarZoom;
+            toolStripSeparator3.Visible = Settings.ViewToolBarZoom;
+            btnColor.Visible = Settings.ViewToolBarColor;
+            toolStripSeparator4.Visible = Settings.ViewToolBarColor;
+
+            this.statusBarToolStripMenuItem.Checked = Settings.ViewStatusBar;
+            this.toolBarToolStripMenuItem.Checked = Settings.ViewToolBar;
+            this.statusToolStripMenuItem.Checked = Settings.ViewStatusBarStatus;
+            this.positionToolStripMenuItem.Checked = Settings.ViewStatusBarCursorPosition;
+            this.fileFuctionsToolStripMenuItem.Checked = Settings.ViewToolBarFileFunctions;
+            this.colorToolStripMenuItem.Checked = Settings.ViewToolBarColor;
+            this.zoomToolStripMenuItem.Checked = Settings.ViewToolBarZoom;
+
+
             if (Win32API.Dwm.DwmIsCompositionEnabled())
             {
-                Win32API.Dwm.MARGINS margin = new Win32API.Dwm.MARGINS(0, 47, 0, 25);
+                Win32API.Dwm.MARGINS margin = new Win32API.Dwm.MARGINS(0, headerPanel.Height, 0, (Settings.ViewStatusBar ? 23 : 0));
                 Win32API.Dwm.DwmExtendFrameIntoClientArea(this.Handle, margin);
             }
             btnColor.Image = CreateColorImage(color);
@@ -70,8 +98,11 @@ namespace VisualBounds.Imaging.PaintBucket
             bool ret = Win32API.Dwm.DwmIsCompositionEnabled();
             if (ret == true && changedGlass == false)
             {
-                Win32API.Dwm.MARGINS margin = new Win32API.Dwm.MARGINS(0, 47, 0, 23);
-                Win32API.Dwm.DwmExtendFrameIntoClientArea(this.Handle, margin);
+                if (Win32API.Dwm.DwmIsCompositionEnabled())
+                {
+                    Win32API.Dwm.MARGINS margin = new Win32API.Dwm.MARGINS(0, headerPanel.Height, 0, (Settings.ViewStatusBar ? 23 : 0));
+                    Win32API.Dwm.DwmExtendFrameIntoClientArea(this.Handle, margin);
+                }
                 changedGlass = true;
             }
             if (ret)
@@ -145,11 +176,13 @@ namespace VisualBounds.Imaging.PaintBucket
 
         private void btnOpen_Click(object sender, EventArgs e)
         {
+            lblReady.Text = "Opening Image...";
             if (openFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 source = Image.FromFile(openFileDialog.FileName);
                 Preview.BackgroundImage = CreatePreview();
                 resizeImage();
+                lblReady.Text = "Ready...";
             }
         }
 
@@ -210,6 +243,7 @@ namespace VisualBounds.Imaging.PaintBucket
 
         private void btnImageScale_ButtonClick(object sender, EventArgs e)
         {
+            lblReady.Text = "Selecting Zoom Percentage....";
             ImageScaleHover = false;
             FrmScale fs = new FrmScale();
             fs.Value = int.Parse(btnImageScale.Text.Replace("%", ""));
@@ -217,6 +251,7 @@ namespace VisualBounds.Imaging.PaintBucket
             {
                 btnImageScale.Text = fs.Value.ToString() + "%";
             }
+            lblReady.Text = "Ready...";
         }
 
         private void toolStripMenuItem2_Click(object sender, EventArgs e)
@@ -240,16 +275,19 @@ namespace VisualBounds.Imaging.PaintBucket
 
         private void btnColor_Click(object sender, EventArgs e)
         {
+            lblReady.Text = "Selecting Color...";
             colorDialog.Color = color;
             if (colorDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 color = colorDialog.Color;
                 btnColor.Image = CreateColorImage(color);
             }
+            lblReady.Text = "Ready...";
         }
         
         private Image CreateColorImage(Color colour)
         {
+            lblReady.Text = "Creating Color Image...";
             Image img = new Bitmap(22, 22);
             using (Graphics g = Graphics.FromImage(img))
             {
@@ -272,11 +310,13 @@ namespace VisualBounds.Imaging.PaintBucket
                     new Point(0, 0)
                 });
             }
+            lblReady.Text = "Ready...";
             return img;
         }
 
         private Image CreatePreview()
         {
+            lblReady.Text = "Creating Preview...";
             float zoomFactor = float.Parse((btnImageScale.Text.Replace("%", ""))) / 100F;
             int newWidth = (int)(source.Width * zoomFactor);
             int newHeight = (int)(source.Height * zoomFactor);
@@ -292,6 +332,7 @@ namespace VisualBounds.Imaging.PaintBucket
                 g.DrawImage(source, new Rectangle(0, 0, newWidth, newHeight));
             }
 
+            lblReady.Text = "Ready...";
             return img;
 
         }
@@ -299,6 +340,98 @@ namespace VisualBounds.Imaging.PaintBucket
         private void btnImageScale_TextChanged(object sender, EventArgs e)
         {
             resizeImage();
+        }
+
+        private void statusBarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            panelStatus.Visible = statusBarToolStripMenuItem.Checked;
+            Settings.ViewStatusBar = statusBarToolStripMenuItem.Checked;
+            Settings.Save();
+            if (Win32API.Dwm.DwmIsCompositionEnabled())
+            {
+                Win32API.Dwm.MARGINS margin = new Win32API.Dwm.MARGINS(0, headerPanel.Height, 0, (Settings.ViewStatusBar ? 23 : 0));
+                Win32API.Dwm.DwmExtendFrameIntoClientArea(this.Handle, margin);
+            }
+        }
+
+        private void positionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Settings.ViewStatusBarCursorPosition = positionToolStripMenuItem.Checked;
+            lblPos.Visible = Settings.ViewStatusBarCursorPosition;
+            lblPosX.Visible = Settings.ViewStatusBarCursorPosition;
+            lblPosSep.Visible = Settings.ViewStatusBarCursorPosition;
+            lblPosY.Visible = Settings.ViewStatusBarCursorPosition;
+            Settings.Save();
+        }
+
+        private void statusToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Settings.ViewStatusBarStatus = statusToolStripMenuItem.Checked;
+            barProgress.Visible = Settings.ViewStatusBarStatus;
+            lblReady.Visible = Settings.ViewStatusBarStatus;
+            Settings.Save();
+        }
+
+
+        private void toolBarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            headerPanel.Height = (Settings.ViewToolBar ? 24 : 47);
+            Settings.ViewToolBar = toolBarToolStripMenuItem.Checked;
+            Settings.Save();
+            if (Win32API.Dwm.DwmIsCompositionEnabled())
+            {
+                Win32API.Dwm.MARGINS margin = new Win32API.Dwm.MARGINS(0, headerPanel.Height, 0, (Settings.ViewStatusBar ? 23 : 0));
+                Win32API.Dwm.DwmExtendFrameIntoClientArea(this.Handle, margin);
+            }
+        }
+
+        private void fileFuctionsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Settings.ViewToolBarFileFunctions = fileFuctionsToolStripMenuItem.Checked;
+            btnToolOpen.Visible = Settings.ViewToolBarFileFunctions;
+            btnToolSave.Visible = Settings.ViewToolBarFileFunctions;
+            toolStripSeparator2.Visible = Settings.ViewToolBarFileFunctions;
+            Settings.Save();
+        }
+
+        private void zoomToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Settings.ViewToolBarZoom = zoomToolStripMenuItem.Checked;
+            btnImageScale.Visible = Settings.ViewToolBarZoom;
+            toolStripSeparator3.Visible = Settings.ViewToolBarZoom;
+            Settings.Save();
+        }
+
+        private void colorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Settings.ViewToolBarColor = colorToolStripMenuItem.Checked;
+            btnColor.Visible = Settings.ViewToolBarColor;
+            toolStripSeparator4.Visible = Settings.ViewToolBarColor;
+            Settings.Save();
+        }
+
+        private void backgroundToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            lblReady.Text = "Selecting Background Color...";
+            colorDialog.Color = Settings.Background;
+            btnView.HideDropDown();
+            if (colorDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                Settings.Background = colorDialog.Color;
+                Settings.Save();
+                backgroundToolStripMenuItem.Image = CreateColorImage(colorDialog.Color);
+                this.BackColor = colorDialog.Color;
+            }
+            lblReady.Text = "Ready...";
+        }
+
+        private void defaultToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Color col = Color.FromArgb(201, 211, 226);
+            Settings.Background = col;
+            backgroundToolStripMenuItem.Image = CreateColorImage(col);
+            this.BackColor = col;
+            Settings.Save();
         }
 
     }

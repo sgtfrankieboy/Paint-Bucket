@@ -22,5 +22,101 @@ namespace VisualBounds.Imaging.PaintBucket.Properties {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool ViewStatusBar {
+            get {
+                return ((bool)(this["ViewStatusBar"]));
+            }
+            set {
+                this["ViewStatusBar"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool ViewStatusBarCursorPosition {
+            get {
+                return ((bool)(this["ViewStatusBarCursorPosition"]));
+            }
+            set {
+                this["ViewStatusBarCursorPosition"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool ViewStatusBarStatus {
+            get {
+                return ((bool)(this["ViewStatusBarStatus"]));
+            }
+            set {
+                this["ViewStatusBarStatus"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool ViewToolBar {
+            get {
+                return ((bool)(this["ViewToolBar"]));
+            }
+            set {
+                this["ViewToolBar"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool ViewToolBarFileFunctions {
+            get {
+                return ((bool)(this["ViewToolBarFileFunctions"]));
+            }
+            set {
+                this["ViewToolBarFileFunctions"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool ViewToolBarZoom {
+            get {
+                return ((bool)(this["ViewToolBarZoom"]));
+            }
+            set {
+                this["ViewToolBarZoom"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool ViewToolBarColor {
+            get {
+                return ((bool)(this["ViewToolBarColor"]));
+            }
+            set {
+                this["ViewToolBarColor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("201, 211, 226")]
+        public global::System.Drawing.Color Background {
+            get {
+                return ((global::System.Drawing.Color)(this["Background"]));
+            }
+            set {
+                this["Background"] = value;
+            }
+        }
     }
 }

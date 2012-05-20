@@ -52,6 +52,8 @@
             this.toolStripMenuItem7 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem8 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.btnColor = new System.Windows.Forms.ToolStripLabel();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.panel3 = new System.Windows.Forms.Panel();
             this.stripMenu = new System.Windows.Forms.ToolStrip();
             this.btnFile = new System.Windows.Forms.ToolStripDropDownButton();
@@ -59,6 +61,16 @@
             this.btnSave = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.btnExit = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnView = new System.Windows.Forms.ToolStripDropDownButton();
+            this.statusBarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.positionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.statusToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolBarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.fileFuctionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.zoomToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.colorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
+            this.backgroundToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panelMain = new System.Windows.Forms.Panel();
             this.scrollControl = new System.Windows.Forms.ScrollableControl();
             this.Preview = new System.Windows.Forms.PictureBox();
@@ -70,8 +82,7 @@
             this.lblPosSep = new System.Windows.Forms.ToolStripLabel();
             this.lblPosX = new System.Windows.Forms.ToolStripLabel();
             this.lblPos = new System.Windows.Forms.ToolStripLabel();
-            this.btnColor = new System.Windows.Forms.ToolStripLabel();
-            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            this.defaultToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.headerPanel.SuspendLayout();
             this.stripTools.SuspendLayout();
             this.stripMenu.SuspendLayout();
@@ -264,6 +275,18 @@
             this.toolStripSeparator3.Name = "toolStripSeparator3";
             this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
             // 
+            // btnColor
+            // 
+            this.btnColor.AutoSize = false;
+            this.btnColor.Name = "btnColor";
+            this.btnColor.Size = new System.Drawing.Size(22, 22);
+            this.btnColor.Click += new System.EventHandler(this.btnColor_Click);
+            // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 25);
+            // 
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.Transparent;
@@ -277,7 +300,8 @@
             this.stripMenu.BackColor = System.Drawing.Color.Transparent;
             this.stripMenu.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.stripMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.btnFile});
+            this.btnFile,
+            this.btnView});
             this.stripMenu.Location = new System.Drawing.Point(0, 0);
             this.stripMenu.Name = "stripMenu";
             this.stripMenu.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
@@ -304,7 +328,7 @@
             // 
             this.btnOpen.Image = global::VisualBounds.Imaging.PaintBucket.Properties.Resources.folder_explore;
             this.btnOpen.Name = "btnOpen";
-            this.btnOpen.Size = new System.Drawing.Size(103, 22);
+            this.btnOpen.Size = new System.Drawing.Size(152, 22);
             this.btnOpen.Text = "Open";
             this.btnOpen.Click += new System.EventHandler(this.btnOpen_Click);
             // 
@@ -312,22 +336,126 @@
             // 
             this.btnSave.Image = global::VisualBounds.Imaging.PaintBucket.Properties.Resources.disk;
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(103, 22);
+            this.btnSave.Size = new System.Drawing.Size(152, 22);
             this.btnSave.Text = "Save";
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(100, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
             // 
             // btnExit
             // 
             this.btnExit.Image = global::VisualBounds.Imaging.PaintBucket.Properties.Resources.door_open;
             this.btnExit.Name = "btnExit";
-            this.btnExit.Size = new System.Drawing.Size(103, 22);
+            this.btnExit.Size = new System.Drawing.Size(152, 22);
             this.btnExit.Text = "Exit";
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
+            // 
+            // btnView
+            // 
+            this.btnView.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.btnView.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.statusBarToolStripMenuItem,
+            this.toolBarToolStripMenuItem,
+            this.toolStripSeparator5,
+            this.backgroundToolStripMenuItem});
+            this.btnView.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnView.Name = "btnView";
+            this.btnView.Size = new System.Drawing.Size(45, 22);
+            this.btnView.Text = "View";
+            // 
+            // statusBarToolStripMenuItem
+            // 
+            this.statusBarToolStripMenuItem.Checked = true;
+            this.statusBarToolStripMenuItem.CheckOnClick = true;
+            this.statusBarToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.statusBarToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.positionToolStripMenuItem,
+            this.statusToolStripMenuItem});
+            this.statusBarToolStripMenuItem.Name = "statusBarToolStripMenuItem";
+            this.statusBarToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.statusBarToolStripMenuItem.Text = "Status Bar";
+            this.statusBarToolStripMenuItem.Click += new System.EventHandler(this.statusBarToolStripMenuItem_Click);
+            // 
+            // positionToolStripMenuItem
+            // 
+            this.positionToolStripMenuItem.Checked = true;
+            this.positionToolStripMenuItem.CheckOnClick = true;
+            this.positionToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.positionToolStripMenuItem.Name = "positionToolStripMenuItem";
+            this.positionToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.positionToolStripMenuItem.Text = "Cursor Position";
+            this.positionToolStripMenuItem.Click += new System.EventHandler(this.positionToolStripMenuItem_Click);
+            // 
+            // statusToolStripMenuItem
+            // 
+            this.statusToolStripMenuItem.Checked = true;
+            this.statusToolStripMenuItem.CheckOnClick = true;
+            this.statusToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.statusToolStripMenuItem.Name = "statusToolStripMenuItem";
+            this.statusToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.statusToolStripMenuItem.Text = "Status";
+            this.statusToolStripMenuItem.Click += new System.EventHandler(this.statusToolStripMenuItem_Click);
+            // 
+            // toolBarToolStripMenuItem
+            // 
+            this.toolBarToolStripMenuItem.Checked = true;
+            this.toolBarToolStripMenuItem.CheckOnClick = true;
+            this.toolBarToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.toolBarToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fileFuctionsToolStripMenuItem,
+            this.zoomToolStripMenuItem,
+            this.colorToolStripMenuItem});
+            this.toolBarToolStripMenuItem.Name = "toolBarToolStripMenuItem";
+            this.toolBarToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.toolBarToolStripMenuItem.Text = "Tool Bar";
+            this.toolBarToolStripMenuItem.Click += new System.EventHandler(this.toolBarToolStripMenuItem_Click);
+            // 
+            // fileFuctionsToolStripMenuItem
+            // 
+            this.fileFuctionsToolStripMenuItem.Checked = true;
+            this.fileFuctionsToolStripMenuItem.CheckOnClick = true;
+            this.fileFuctionsToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.fileFuctionsToolStripMenuItem.Name = "fileFuctionsToolStripMenuItem";
+            this.fileFuctionsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.fileFuctionsToolStripMenuItem.Text = "File Fuctions";
+            this.fileFuctionsToolStripMenuItem.Click += new System.EventHandler(this.fileFuctionsToolStripMenuItem_Click);
+            // 
+            // zoomToolStripMenuItem
+            // 
+            this.zoomToolStripMenuItem.Checked = true;
+            this.zoomToolStripMenuItem.CheckOnClick = true;
+            this.zoomToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.zoomToolStripMenuItem.Name = "zoomToolStripMenuItem";
+            this.zoomToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.zoomToolStripMenuItem.Text = "Zoom";
+            this.zoomToolStripMenuItem.Click += new System.EventHandler(this.zoomToolStripMenuItem_Click);
+            // 
+            // colorToolStripMenuItem
+            // 
+            this.colorToolStripMenuItem.Checked = true;
+            this.colorToolStripMenuItem.CheckOnClick = true;
+            this.colorToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.colorToolStripMenuItem.Name = "colorToolStripMenuItem";
+            this.colorToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.colorToolStripMenuItem.Text = "Color";
+            this.colorToolStripMenuItem.Click += new System.EventHandler(this.colorToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator5
+            // 
+            this.toolStripSeparator5.Name = "toolStripSeparator5";
+            this.toolStripSeparator5.Size = new System.Drawing.Size(149, 6);
+            // 
+            // backgroundToolStripMenuItem
+            // 
+            this.backgroundToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.defaultToolStripMenuItem});
+            this.backgroundToolStripMenuItem.Name = "backgroundToolStripMenuItem";
+            this.backgroundToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.backgroundToolStripMenuItem.Text = "Background";
+            this.backgroundToolStripMenuItem.Click += new System.EventHandler(this.backgroundToolStripMenuItem_Click);
             // 
             // panelMain
             // 
@@ -400,9 +528,11 @@
             // 
             // lblReady
             // 
+            this.lblReady.AutoSize = false;
             this.lblReady.Name = "lblReady";
-            this.lblReady.Size = new System.Drawing.Size(48, 21);
+            this.lblReady.Size = new System.Drawing.Size(250, 21);
             this.lblReady.Text = "Ready...";
+            this.lblReady.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblPosY
             // 
@@ -436,17 +566,12 @@
             this.lblPos.Size = new System.Drawing.Size(16, 21);
             this.lblPos.ToolTipText = "Position relative to the image";
             // 
-            // btnColor
+            // defaultToolStripMenuItem
             // 
-            this.btnColor.AutoSize = false;
-            this.btnColor.Name = "btnColor";
-            this.btnColor.Size = new System.Drawing.Size(22, 22);
-            this.btnColor.Click += new System.EventHandler(this.btnColor_Click);
-            // 
-            // toolStripSeparator4
-            // 
-            this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 25);
+            this.defaultToolStripMenuItem.Name = "defaultToolStripMenuItem";
+            this.defaultToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.defaultToolStripMenuItem.Text = "Default";
+            this.defaultToolStripMenuItem.Click += new System.EventHandler(this.defaultToolStripMenuItem_Click);
             // 
             // FrmMain
             // 
@@ -523,6 +648,17 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripLabel btnColor;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
+        private System.Windows.Forms.ToolStripDropDownButton btnView;
+        private System.Windows.Forms.ToolStripMenuItem statusBarToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem positionToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem toolBarToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem fileFuctionsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem zoomToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem colorToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem statusToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
+        private System.Windows.Forms.ToolStripMenuItem backgroundToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem defaultToolStripMenuItem;
 
 
 
