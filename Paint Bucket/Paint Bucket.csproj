@@ -50,6 +50,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BitmapInfo.cs" />
+    <Compile Include="EImage.cs" />
     <Compile Include="FrmScale.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -104,6 +106,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="1337436090_gtk-missing-image.ico" />
+    <None Include="Resources\1337585476_gnome-mime-application-x-killustrator.png" />
     <None Include="Resources\emblem-pictures.png" />
     <None Include="Resources\1337544610_insert-image.png" />
     <None Include="Resources\chart_empty.png" />

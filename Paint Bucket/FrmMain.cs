@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.Runtime.InteropServices;
 using System.Drawing.Drawing2D;
 using System.Threading;
+using System.Drawing.Imaging;
 
 namespace VisualBounds.Imaging.PaintBucket
 {
@@ -19,7 +20,7 @@ namespace VisualBounds.Imaging.PaintBucket
 
         private static Properties.Settings Settings { get { return Properties.Settings.Default; } }
 
-        public static Image source;
+        public static EImage Source;
         public static Color color = Color.Maroon;
 
         public FrmMain(string[] args)
@@ -156,14 +157,15 @@ namespace VisualBounds.Imaging.PaintBucket
 
         public void resizeImage()
         {
-            if (source == null || Preview.BackgroundImage == null)
+            if (Source == null || Preview.BackgroundImage == null)
                 return;
-
-            Preview.BackgroundImage = CreatePreview();
 
             float ZoomFactor = int.Parse(btnImageScale.Text.Replace("%", "")) / 100F;
             Preview.Width = (int)(Preview.BackgroundImage.Width * ZoomFactor);
             Preview.Height = (int)(Preview.BackgroundImage.Height * ZoomFactor);
+
+            Source.ZoomFactor = ZoomFactor;
+            Preview.BackgroundImage = Source.ScaledPreview();
 
             int x = (scrollControl.Width - Preview.Width) / 2;
             int y = (scrollControl.Height - Preview.Height) / 2;
@@ -180,13 +182,14 @@ namespace VisualBounds.Imaging.PaintBucket
             lblReady.Text = "Opening Image...";
             if (openFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                source = Image.FromFile(openFileDialog.FileName);
-                Preview.BackgroundImage = CreatePreview();
+                Source = new EImage(Image.FromFile(openFileDialog.FileName));
+                Preview.BackgroundImage = Source.ScaledPreview();
                 resizeImage();
                 btnColourRemover.Enabled = true;
                 btnImageSplitter.Enabled = true;
                 btnSave.Enabled = true;
                 btnToolSave.Enabled = true;
+                btnImage.Enabled = true;
                 lblReady.Text = "Ready...";
             }
         }
@@ -195,7 +198,7 @@ namespace VisualBounds.Imaging.PaintBucket
         {
             if (saveFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                source.Save(saveFileDialog.FileName);
+                Source.UnscaledPreview().Save(saveFileDialog.FileName);
             }
         }
 
@@ -303,37 +306,6 @@ namespace VisualBounds.Imaging.PaintBucket
             }
             lblReady.Text = "Ready...";
             return img;
-        }
-
-        private Image CreatePreview()
-        {
-            lblReady.Text = "Creating Preview...";
-            float zoomFactor = float.Parse((btnImageScale.Text.Replace("%", ""))) / 100F;
-            int newWidth = (int)(source.Width * zoomFactor);
-            int newHeight = (int)(source.Height * zoomFactor);
-
-            Image img = new Bitmap(newWidth, newHeight);
-
-            using (Graphics g = Graphics.FromImage(img))
-            {
-                g.InterpolationMode = InterpolationMode.NearestNeighbor;
-                g.CompositingQuality = CompositingQuality.AssumeLinear;
-                g.SmoothingMode = SmoothingMode.None;
-
-                g.DrawImage(source, new Rectangle(0, 0, newWidth, newHeight));
-            }
-
-            lblReady.Text = "Ready...";
-            return img;
-
-        }
-
-        private void RemoverColor(Color col)
-        {
-            Bitmap map = new Bitmap(source);
-            map.MakeTransparent(col);
-            source = map;
-            Preview.BackgroundImage = CreatePreview();
         }
 
         private void btnImageScale_TextChanged(object sender, EventArgs e)
@@ -456,14 +428,15 @@ namespace VisualBounds.Imaging.PaintBucket
             {
                 if (e.Button == System.Windows.Forms.MouseButtons.Left)
                 {
-                    RemoverColor(color);
+                    Source.MakeTransparent(0, color);
                 }
                 else if (e.Button == System.Windows.Forms.MouseButtons.Right)
                 {
                     color = screen.GetPixel(MousePosition.X, MousePosition.Y);
                     btnColor.Image = CreateColorImage(color);
-                    RemoverColor(color);
+                    Source.MakeTransparent(0, color);
                 }
+                Preview.BackgroundImage = Source.ScaledPreview();
             }
         }
 
@@ -496,14 +469,15 @@ namespace VisualBounds.Imaging.PaintBucket
             {
                 if (e.Button == System.Windows.Forms.MouseButtons.Left)
                 {
-                    RemoverColor(color);
+                    Source.MakeTransparent(0, color);
                 }
                 else if (e.Button == System.Windows.Forms.MouseButtons.Right)
                 {
                     color = screen.GetPixel(MousePosition.X, MousePosition.Y);
                     btnColor.Image = CreateColorImage(color);
-                    RemoverColor(color);
+                    Source.MakeTransparent(0, color);
                 }
+                Preview.BackgroundImage = Source.ScaledPreview();
             }
         }
 
@@ -523,7 +497,7 @@ namespace VisualBounds.Imaging.PaintBucket
                 if (folderBrowserDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 {
                     fs.Path = folderBrowserDialog.SelectedPath;
-                    fs.Source = source;
+                    fs.Source = Source.UnscaledPreview();
                     Thread thread = new Thread(new ParameterizedThreadStart(splitImages));
                     thread.Start(fs);
                 }
@@ -545,8 +519,6 @@ namespace VisualBounds.Imaging.PaintBucket
             int rows = (split.Source.Width / split.ImageSize.Width);
             int columns = (split.Source.Height / split.ImageSize.Height);
             int total = rows * columns;
-
-            MessageBox.Show(rows.ToString() + " - " + columns.ToString() + " - " + total.ToString());
 
             this.Invoke((MethodInvoker)delegate
             {
@@ -578,6 +550,18 @@ namespace VisualBounds.Imaging.PaintBucket
                 this.barProgress.Value = 0;
                 this.lblReady.Text = "Ready...";
             });
+        }
+
+        private void negativeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Source.Invert();
+            Preview.BackgroundImage = Source.ScaledPreview();
+        }
+
+        private void grayscaleToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Source.GrayScale();
+            Preview.BackgroundImage = Source.ScaledPreview();
         }
     }
 }

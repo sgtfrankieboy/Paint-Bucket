@@ -67,6 +67,13 @@ namespace VisualBounds.Imaging.PaintBucket.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap _1337585476_gnome_mime_application_x_killustrator {
+            get {
+                object obj = ResourceManager.GetObject("1337585476_gnome-mime-application-x-killustrator", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap chart_empty {
             get {
                 object obj = ResourceManager.GetObject("chart_empty", resourceCulture);
