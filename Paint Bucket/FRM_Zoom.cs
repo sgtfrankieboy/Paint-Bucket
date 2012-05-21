@@ -9,11 +9,11 @@ using System.Windows.Forms;
 
 namespace VisualBounds.Imaging.PaintBucket
 {
-    public partial class FrmScale : Form
+    public partial class FRM_Zoom : Form
     {
         public int Value { get { return (int)this.txtValue.Value; } set { this.txtValue.Value = value; } }
 
-        public FrmScale()
+        public FRM_Zoom()
         {
             InitializeComponent();         
         }

@@ -12,6 +12,9 @@ namespace VisualBounds.Imaging.PaintBucket
     {
         public Dictionary<BitmapInfo, Bitmap> Layers { get; private set; }
         private float _ZoomFactor;
+
+        public float[] Colorlization { get; set; }
+
         public float ZoomFactor
         {
             get { return _ZoomFactor; }
@@ -28,14 +31,16 @@ namespace VisualBounds.Imaging.PaintBucket
         {
             Layers = new Dictionary<BitmapInfo, Bitmap>();
             ZoomFactor = 1f;
-            Layers.Add(new BitmapInfo(true, Width, Height, 0, 0), new Bitmap(Width, Height));
+            Colorlization = new float[4] { 1f, 1f, 1f, 1f };
+            Layers.Add(new BitmapInfo(true, Width, Height, 0, 0, new ImageAttributes()), new Bitmap(Width, Height));
         }
 
         public EImage(Image source)
         {
             Layers = new Dictionary<BitmapInfo, Bitmap>();
             ZoomFactor = 1f;
-            Layers.Add(new BitmapInfo(true, source.Width, source.Height, 0, 0), new Bitmap(source));
+            Colorlization = new float[4] { 1f, 1f, 1f, 1f };
+            Layers.Add(new BitmapInfo(true, source.Width, source.Height, 0, 0, new ImageAttributes()), new Bitmap(source));
         }
 
         public Image UnscaledPreview()
@@ -53,6 +58,51 @@ namespace VisualBounds.Imaging.PaintBucket
             }
 
             return preview;
+        }
+
+        public void SetColorization(float[] colorization)
+        {
+            ImageAttributes at = new ImageAttributes();
+            ColorMatrix matrix = new ColorMatrix(new float[][]
+                    {
+                        new float[] {colorization[0], 0, 0, 0, 0},
+                        new float[] {0, colorization[1], 0, 0, 0},
+                        new float[] {0, 0, colorization[2], 0, 0},
+                        new float[] {0, 0, 0, colorization[3], 0},
+                        new float[] {0, 0, 0, 0, 1}
+                    });
+            at.SetColorMatrix(matrix);
+
+            foreach (KeyValuePair<BitmapInfo, Bitmap> map in Layers)
+            {
+                using (Graphics g = Graphics.FromImage(map.Value))
+                {
+                    map.Key.Attributes.SetColorMatrix(matrix);
+                    g.DrawImage(map.Value, new Rectangle(0, 0, map.Value.Width, map.Value.Height), 0, 0, map.Value.Width, map.Value.Height, GraphicsUnit.Pixel, at);
+                }
+            }
+        }
+
+        public void SetColorization(int Layer, float[] colorization)
+        {
+            ImageAttributes at = new ImageAttributes();
+            ColorMatrix matrix = new ColorMatrix(new float[][]
+                    {
+                        new float[] {colorization[0], 0, 0, 0, 0},
+                        new float[] {0, colorization[1], 0, 0, 0},
+                        new float[] {0, 0, colorization[2], 0, 0},
+                        new float[] {0, 0, 0, colorization[3], 0},
+                        new float[] {0, 0, 0, 0, 1}
+                    });
+            at.SetColorMatrix(matrix);
+
+            KeyValuePair<BitmapInfo, Bitmap> map = Layers.ElementAt(Layer);
+
+            using (Graphics g = Graphics.FromImage(map.Value))
+            {
+                map.Key.Attributes.SetColorMatrix(matrix);
+                g.DrawImage(map.Value, new Rectangle(0, 0, map.Value.Width, map.Value.Height), 0, 0, map.Value.Width, map.Value.Height, GraphicsUnit.Pixel, at);
+            }
         }
 
         public Image ScaledPreview()
@@ -83,19 +133,21 @@ namespace VisualBounds.Imaging.PaintBucket
         public void GrayScale()
         {
             ImageAttributes at = new ImageAttributes();
-            at.SetColorMatrix(new ColorMatrix(new float[][]
+            ColorMatrix matrix = new ColorMatrix(new float[][]
                     {
                         new float[] {0.30f, 0.30f, 0.30f, 0, 0},
                         new float[] {0.59f, 0.59f, 0.59f, 0, 0},
                         new float[] {0.11f, 0.11f, 0.11f, 0, 0},
                         new float[] {0, 0, 0, 1, 0},
                         new float[] {0, 0, 0, 0, 1}
-                    }));
+                    });
+            at.SetColorMatrix(matrix);
 
             foreach (KeyValuePair<BitmapInfo, Bitmap> map in Layers)
             {
                 using (Graphics g = Graphics.FromImage(map.Value))
                 {
+                    map.Key.Attributes.SetColorMatrix(matrix);
                     g.DrawImage(map.Value, new Rectangle(0, 0, map.Value.Width, map.Value.Height), 0, 0, map.Value.Width, map.Value.Height, GraphicsUnit.Pixel, at);
                 }
             }
@@ -104,14 +156,15 @@ namespace VisualBounds.Imaging.PaintBucket
         public void Invert()
         {
             ImageAttributes at = new ImageAttributes();
-            at.SetColorMatrix(new ColorMatrix(new float[][]
+            ColorMatrix matrix = new ColorMatrix(new float[][]
             {
                 new float[] {-1, 0, 0, 0, 0},
                 new float[] {0, -1, 0, 0, 0},
                 new float[] {0, 0, -1, 0, 0},
                 new float[] {0, 0, 0, 1, 0},
                 new float[] {1, 1, 1, 0, 1}
-            }));
+            });
+            at.SetColorMatrix(matrix);
 
             foreach (KeyValuePair<BitmapInfo, Bitmap> map in Layers)
             {

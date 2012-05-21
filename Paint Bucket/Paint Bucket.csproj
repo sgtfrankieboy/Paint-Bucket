@@ -51,37 +51,52 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BitmapInfo.cs" />
+    <Compile Include="Checks.cs" />
     <Compile Include="EImage.cs" />
-    <Compile Include="FrmScale.cs">
+    <Compile Include="FRM_ColorTransform.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmScale.Designer.cs">
-      <DependentUpon>FrmScale.cs</DependentUpon>
+    <Compile Include="FRM_ColorTransform.Designer.cs">
+      <DependentUpon>FRM_ColorTransform.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmSplitter.cs">
+    <Compile Include="FRM_Zoom.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmSplitter.Designer.cs">
-      <DependentUpon>FrmSplitter.cs</DependentUpon>
+    <Compile Include="FRM_Zoom.Designer.cs">
+      <DependentUpon>FRM_Zoom.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FRM_ImageSplitter.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FRM_ImageSplitter.Designer.cs">
+      <DependentUpon>FRM_ImageSplitter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GlassButton.cs">
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="GlassToolstripRenderer.cs" />
-    <Compile Include="FrmMain.cs">
+    <Compile Include="FRM_Main.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmMain.Designer.cs">
-      <DependentUpon>FrmMain.cs</DependentUpon>
+    <Compile Include="FRM_Main.Designer.cs">
+      <DependentUpon>FRM_Main.cs</DependentUpon>
     </Compile>
+    <Compile Include="GraphicsHelper.cs" />
+    <Compile Include="Help.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Win32API.cs" />
-    <EmbeddedResource Include="FrmMain.resx">
-      <DependentUpon>FrmMain.cs</DependentUpon>
+    <EmbeddedResource Include="FRM_ColorTransform.resx">
+      <DependentUpon>FRM_ColorTransform.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmScale.resx">
-      <DependentUpon>FrmScale.cs</DependentUpon>
+    <EmbeddedResource Include="FRM_Main.resx">
+      <DependentUpon>FRM_Main.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmSplitter.resx">
-      <DependentUpon>FrmSplitter.cs</DependentUpon>
+    <EmbeddedResource Include="FRM_Zoom.resx">
+      <DependentUpon>FRM_Zoom.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FRM_ImageSplitter.resx">
+      <DependentUpon>FRM_ImageSplitter.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -106,6 +121,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="1337436090_gtk-missing-image.ico" />
+    <None Include="Resources\bullet_arrow_up.png" />
+    <None Include="Resources\bullet_arrow_down.png" />
+    <None Include="Resources\bullet_arrow_left.png" />
+    <None Include="Resources\bullet_arrow_right.png" />
+    <None Include="Resources\bullet_black.png" />
     <None Include="Resources\1337585476_gnome-mime-application-x-killustrator.png" />
     <None Include="Resources\emblem-pictures.png" />
     <None Include="Resources\1337544610_insert-image.png" />

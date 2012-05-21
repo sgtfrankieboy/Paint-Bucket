@@ -15,7 +15,7 @@ namespace VisualBounds.Imaging.PaintBucket
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(true);
-            Application.Run(new FrmMain(args));
+            Application.Run(new FRM_Main(args));
         }
     }
 }

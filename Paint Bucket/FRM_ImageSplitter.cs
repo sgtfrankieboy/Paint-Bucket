@@ -10,7 +10,7 @@ using System.Drawing.Imaging;
 
 namespace VisualBounds.Imaging.PaintBucket
 {
-    public partial class FrmSplitter : Form
+    public partial class FRM_ImageSplitter : Form
     {
         public Size ImageSize {
             get
@@ -67,10 +67,46 @@ namespace VisualBounds.Imaging.PaintBucket
 
         public Image Source { get; set; }
 
-        public FrmSplitter()
+        public FRM_ImageSplitter()
         {
             InitializeComponent();
             comboExt.SelectedIndex = 6;
+        }
+
+        private void panelButtons_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                Win32API.ReleaseCapture();
+                Win32API.SendMessage(Handle, Win32API.WM_NCLBUTTONDOWN, Win32API.HT_CAPTION, 0);
+            }
+        }
+
+        private void FRM_ImageSplitter_Paint(object sender, PaintEventArgs e)
+        {
+            Checks.Theme theme = Checks.CheckTheme();
+            if (theme == Checks.Theme.Aero)
+            {
+                Win32API.Dwm.DwmExtendFrameIntoClientArea(this.Handle, new Win32API.Dwm.MARGINS(0, 0, 0, PANEL_Controls.Height));
+                PANEL_Controls.BackColor = Color.Black;
+            }
+            else if (theme == Checks.Theme.Basic)
+                if (Checks.isActive(this.Handle))
+                    PANEL_Controls.BackColor = Color.FromArgb(185, 209, 234);
+                else
+                    PANEL_Controls.BackColor = Color.FromArgb(215, 228, 242);
+            else
+                PANEL_Controls.BackColor = SystemColors.Control;
+        }
+
+        private void FRM_ImageSplitter_Activated(object sender, EventArgs e)
+        {
+            Invalidate();
+        }
+
+        private void FRM_ImageSplitter_Deactivate(object sender, EventArgs e)
+        {
+            Invalidate();
         }
     }
 }

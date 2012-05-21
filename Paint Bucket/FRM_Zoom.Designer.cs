@@ -1,6 +1,6 @@
 ﻿namespace VisualBounds.Imaging.PaintBucket
 {
-    partial class FrmScale
+    partial class FRM_Zoom
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmScale));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FRM_Zoom));
             this.btnOK = new System.Windows.Forms.Button();
             this.txtValue = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.txtValue)).BeginInit();

@@ -1,6 +1,6 @@
 ﻿namespace VisualBounds.Imaging.PaintBucket
 {
-    partial class FrmSplitter
+    partial class FRM_ImageSplitter
     {
         /// <summary>
         /// Required designer variable.
@@ -28,50 +28,55 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmSplitter));
-            this.panelButtons = new System.Windows.Forms.Panel();
-            this.btnSplit = new System.Windows.Forms.Button();
-            this.btnCancel = new System.Windows.Forms.Button();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FRM_ImageSplitter));
+            this.PANEL_Controls = new System.Windows.Forms.Panel();
+            this.btnCancel = new VisualBounds.Imaging.PaintBucket.GlassButton();
+            this.btnSplit = new VisualBounds.Imaging.PaintBucket.GlassButton();
             this.numWidth = new System.Windows.Forms.NumericUpDown();
             this.numHeight = new System.Windows.Forms.NumericUpDown();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.comboExt = new System.Windows.Forms.ComboBox();
-            this.panelButtons.SuspendLayout();
+            this.PANEL_Controls.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numWidth)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numHeight)).BeginInit();
             this.SuspendLayout();
             // 
-            // panelButtons
+            // PANEL_Controls
             // 
-            this.panelButtons.BackColor = System.Drawing.SystemColors.Control;
-            this.panelButtons.Controls.Add(this.btnCancel);
-            this.panelButtons.Controls.Add(this.btnSplit);
-            this.panelButtons.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panelButtons.Location = new System.Drawing.Point(0, 70);
-            this.panelButtons.Name = "panelButtons";
-            this.panelButtons.Size = new System.Drawing.Size(170, 48);
-            this.panelButtons.TabIndex = 0;
-            // 
-            // btnSplit
-            // 
-            this.btnSplit.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnSplit.Location = new System.Drawing.Point(88, 13);
-            this.btnSplit.Name = "btnSplit";
-            this.btnSplit.Size = new System.Drawing.Size(75, 23);
-            this.btnSplit.TabIndex = 0;
-            this.btnSplit.Text = "Split";
-            this.btnSplit.UseVisualStyleBackColor = true;
+            this.PANEL_Controls.BackColor = System.Drawing.SystemColors.Control;
+            this.PANEL_Controls.Controls.Add(this.btnCancel);
+            this.PANEL_Controls.Controls.Add(this.btnSplit);
+            this.PANEL_Controls.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.PANEL_Controls.Location = new System.Drawing.Point(0, 64);
+            this.PANEL_Controls.Name = "PANEL_Controls";
+            this.PANEL_Controls.Size = new System.Drawing.Size(170, 37);
+            this.PANEL_Controls.TabIndex = 0;
+            this.PANEL_Controls.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelButtons_MouseDown);
             // 
             // btnCancel
             // 
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(7, 13);
+            this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)), true);
+            this.btnCancel.Location = new System.Drawing.Point(7, 7);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 0;
-            this.btnCancel.Text = "Cancel";
+            this.btnCancel.text = "Cancel";
+            this.btnCancel.UseCompatibleTextRendering = true;
             this.btnCancel.UseVisualStyleBackColor = true;
+            // 
+            // btnSplit
+            // 
+            this.btnSplit.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.btnSplit.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)), true);
+            this.btnSplit.Location = new System.Drawing.Point(88, 7);
+            this.btnSplit.Name = "btnSplit";
+            this.btnSplit.Size = new System.Drawing.Size(75, 23);
+            this.btnSplit.TabIndex = 0;
+            this.btnSplit.text = "Split";
+            this.btnSplit.UseCompatibleTextRendering = true;
+            this.btnSplit.UseVisualStyleBackColor = true;
             // 
             // numWidth
             // 
@@ -144,23 +149,26 @@
             this.comboExt.Size = new System.Drawing.Size(44, 21);
             this.comboExt.TabIndex = 3;
             // 
-            // FrmSplitter
+            // FRM_ImageSplitter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(170, 118);
+            this.ClientSize = new System.Drawing.Size(170, 101);
             this.Controls.Add(this.comboExt);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.numHeight);
             this.Controls.Add(this.numWidth);
-            this.Controls.Add(this.panelButtons);
+            this.Controls.Add(this.PANEL_Controls);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "FrmSplitter";
+            this.Name = "FRM_ImageSplitter";
             this.Text = "Image Splitter";
-            this.panelButtons.ResumeLayout(false);
+            this.Activated += new System.EventHandler(this.FRM_ImageSplitter_Activated);
+            this.Deactivate += new System.EventHandler(this.FRM_ImageSplitter_Deactivate);
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.FRM_ImageSplitter_Paint);
+            this.PANEL_Controls.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.numWidth)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numHeight)).EndInit();
             this.ResumeLayout(false);
@@ -170,9 +178,9 @@
 
         #endregion
 
-        private System.Windows.Forms.Panel panelButtons;
-        private System.Windows.Forms.Button btnCancel;
-        private System.Windows.Forms.Button btnSplit;
+        private System.Windows.Forms.Panel PANEL_Controls;
+        private GlassButton btnCancel;
+        private GlassButton btnSplit;
         private System.Windows.Forms.NumericUpDown numWidth;
         private System.Windows.Forms.NumericUpDown numHeight;
         private System.Windows.Forms.Label label1;
