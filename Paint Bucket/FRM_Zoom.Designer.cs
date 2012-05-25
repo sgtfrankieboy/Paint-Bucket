@@ -58,7 +58,7 @@
             0,
             0});
             this.txtValue.Name = "txtValue";
-            this.txtValue.Size = new System.Drawing.Size(54, 20);
+            this.txtValue.Size = new System.Drawing.Size(54, 21);
             this.txtValue.TabIndex = 0;
             this.txtValue.Value = new decimal(new int[] {
             25,
@@ -67,16 +67,17 @@
             0});
             this.txtValue.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtValue_KeyDown);
             // 
-            // FrmScale
+            // FRM_Zoom
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(122, 44);
             this.Controls.Add(this.txtValue);
             this.Controls.Add(this.btnOK);
+            this.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "FrmScale";
+            this.Name = "FRM_Zoom";
             this.Text = "Image Scale";
             this.Load += new System.EventHandler(this.FrmScale_Load);
             ((System.ComponentModel.ISupportInitialize)(this.txtValue)).EndInit();

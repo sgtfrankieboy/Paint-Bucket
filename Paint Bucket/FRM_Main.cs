@@ -190,16 +190,7 @@ namespace VisualBounds.Imaging.PaintBucket
 
         private void BTN_Menu_Image_Transform_ColorTransform_Click(object sender, EventArgs e)
         {
-            FRM_ColorTransform cf = new FRM_ColorTransform();
-            cf.Red = Source.Colorlization[0];
-            cf.Green = Source.Colorlization[1];
-            cf.Blue = Source.Colorlization[2];
-            cf.Alpha = Source.Colorlization[3];
-            if (cf.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            {
-                Source.SetColorization(new float[] { cf.Red, cf.Green, cf.Blue, cf.Alpha });
-                PREVIEW.BackgroundImage = Source.ScaledPreview();
-            }
+
         }
 
         #endregion
@@ -210,23 +201,7 @@ namespace VisualBounds.Imaging.PaintBucket
 
         private void BTN_Menu_Utilities_ImageSplitter_Click(object sender, EventArgs e)
         {
-            LBL_Status_Info.Text = "Splitting Image...";
-            FRM_ImageSplitter fs = new FRM_ImageSplitter();
-            fs.ImageSize = new Size(16, 16);
-            if (fs.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            {
-                if (DIALOG_Folder.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-                {
-                    fs.Path = DIALOG_Folder.SelectedPath;
-                    fs.Source = Source.UnscaledPreview();
-                    Thread thread = new Thread(new ParameterizedThreadStart(SplitImage));
-                    thread.Start(fs);
-                }
-                else
-                    LBL_Status_Info.Text = "Ready...";
-            }
-            else
-                LBL_Status_Info.Text = "Ready...";
+
         }
 
 #endregion

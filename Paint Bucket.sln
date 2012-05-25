@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Paint Bucket", "Paint Bucket\Paint Bucket.csproj", "{D8C0ED35-3724-4050-AB35-27D3E1C0BC11}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Paint Bucket v0.5", "Paint Bucket v0.5\Paint Bucket v0.5.csproj", "{15AEFEAB-6A43-418E-A48F-740D53DCB47A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -13,6 +15,10 @@ Global
 		{D8C0ED35-3724-4050-AB35-27D3E1C0BC11}.Debug|x86.Build.0 = Debug|x86
 		{D8C0ED35-3724-4050-AB35-27D3E1C0BC11}.Release|x86.ActiveCfg = Release|x86
 		{D8C0ED35-3724-4050-AB35-27D3E1C0BC11}.Release|x86.Build.0 = Release|x86
+		{15AEFEAB-6A43-418E-A48F-740D53DCB47A}.Debug|x86.ActiveCfg = Debug|x86
+		{15AEFEAB-6A43-418E-A48F-740D53DCB47A}.Debug|x86.Build.0 = Debug|x86
+		{15AEFEAB-6A43-418E-A48F-740D53DCB47A}.Release|x86.ActiveCfg = Release|x86
+		{15AEFEAB-6A43-418E-A48F-740D53DCB47A}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -57,7 +57,7 @@
             // btnCancel
             // 
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)), true);
+            this.btnCancel.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancel.Location = new System.Drawing.Point(7, 7);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
@@ -69,7 +69,7 @@
             // btnSplit
             // 
             this.btnSplit.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnSplit.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)), true);
+            this.btnSplit.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSplit.Location = new System.Drawing.Point(88, 7);
             this.btnSplit.Name = "btnSplit";
             this.btnSplit.Size = new System.Drawing.Size(75, 23);
@@ -87,7 +87,7 @@
             0,
             0});
             this.numWidth.Name = "numWidth";
-            this.numWidth.Size = new System.Drawing.Size(54, 20);
+            this.numWidth.Size = new System.Drawing.Size(54, 21);
             this.numWidth.TabIndex = 1;
             this.numWidth.Value = new decimal(new int[] {
             1,
@@ -104,7 +104,7 @@
             0,
             0});
             this.numHeight.Name = "numHeight";
-            this.numHeight.Size = new System.Drawing.Size(54, 20);
+            this.numHeight.Size = new System.Drawing.Size(54, 21);
             this.numHeight.TabIndex = 1;
             this.numHeight.Value = new decimal(new int[] {
             1,
@@ -117,7 +117,7 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(12, 14);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(38, 13);
+            this.label1.Size = new System.Drawing.Size(39, 13);
             this.label1.TabIndex = 2;
             this.label1.Text = "Width:";
             // 
@@ -126,7 +126,7 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(12, 40);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(41, 13);
+            this.label2.Size = new System.Drawing.Size(42, 13);
             this.label2.TabIndex = 2;
             this.label2.Text = "Height:";
             // 
@@ -161,6 +161,7 @@
             this.Controls.Add(this.numHeight);
             this.Controls.Add(this.numWidth);
             this.Controls.Add(this.PANEL_Controls);
+            this.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FRM_ImageSplitter";

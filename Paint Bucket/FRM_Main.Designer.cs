@@ -166,7 +166,7 @@
             this.BTN_Tools_ColorRemover.Image = global::VisualBounds.Imaging.PaintBucket.Properties.Resources.emblem_pictures;
             this.BTN_Tools_ColorRemover.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.BTN_Tools_ColorRemover.Name = "BTN_Tools_ColorRemover";
-            this.BTN_Tools_ColorRemover.Size = new System.Drawing.Size(23, 22);
+            this.BTN_Tools_ColorRemover.Size = new System.Drawing.Size(23, 24);
             this.BTN_Tools_ColorRemover.Text = "Colour Remover";
             // 
             // STRIP_Settings
@@ -199,7 +199,7 @@
             this.BTN_Settings_Open.Image = global::VisualBounds.Imaging.PaintBucket.Properties.Resources.folder_explore;
             this.BTN_Settings_Open.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.BTN_Settings_Open.Name = "BTN_Settings_Open";
-            this.BTN_Settings_Open.Size = new System.Drawing.Size(23, 22);
+            this.BTN_Settings_Open.Size = new System.Drawing.Size(23, 24);
             this.BTN_Settings_Open.Text = "Open";
             this.BTN_Settings_Open.Click += new System.EventHandler(this.BTN_Menu_File_Open_Click);
             // 
@@ -210,14 +210,14 @@
             this.BTN_Settings_Save.Image = global::VisualBounds.Imaging.PaintBucket.Properties.Resources.disk;
             this.BTN_Settings_Save.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.BTN_Settings_Save.Name = "BTN_Settings_Save";
-            this.BTN_Settings_Save.Size = new System.Drawing.Size(23, 22);
+            this.BTN_Settings_Save.Size = new System.Drawing.Size(23, 24);
             this.BTN_Settings_Save.Text = "Save";
             this.BTN_Settings_Save.Click += new System.EventHandler(this.BTN_Menu_File_Save_Click);
             // 
             // SEPARATOR_Settings_1
             // 
             this.SEPARATOR_Settings_1.Name = "SEPARATOR_Settings_1";
-            this.SEPARATOR_Settings_1.Size = new System.Drawing.Size(6, 25);
+            this.SEPARATOR_Settings_1.Size = new System.Drawing.Size(6, 27);
             // 
             // BTN_Settings_Zoom
             // 
@@ -233,7 +233,7 @@
             this.BTN_Settings_Zoom.Image = ((System.Drawing.Image)(resources.GetObject("BTN_Settings_Zoom.Image")));
             this.BTN_Settings_Zoom.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.BTN_Settings_Zoom.Name = "BTN_Settings_Zoom";
-            this.BTN_Settings_Zoom.Size = new System.Drawing.Size(51, 22);
+            this.BTN_Settings_Zoom.Size = new System.Drawing.Size(51, 24);
             this.BTN_Settings_Zoom.Text = "100%";
             this.BTN_Settings_Zoom.ToolTipText = "Image Scale";
             this.BTN_Settings_Zoom.ButtonClick += new System.EventHandler(this.BTN_Settings_Zoom_ButtonClick);
@@ -293,7 +293,7 @@
             // SEPARATOR_Settings_2
             // 
             this.SEPARATOR_Settings_2.Name = "SEPARATOR_Settings_2";
-            this.SEPARATOR_Settings_2.Size = new System.Drawing.Size(6, 25);
+            this.SEPARATOR_Settings_2.Size = new System.Drawing.Size(6, 27);
             // 
             // BTN_Settings_Color
             // 
@@ -351,7 +351,7 @@
             // 
             this.BTN_Menu_File_Open.Image = global::VisualBounds.Imaging.PaintBucket.Properties.Resources.folder_explore;
             this.BTN_Menu_File_Open.Name = "BTN_Menu_File_Open";
-            this.BTN_Menu_File_Open.Size = new System.Drawing.Size(103, 22);
+            this.BTN_Menu_File_Open.Size = new System.Drawing.Size(152, 22);
             this.BTN_Menu_File_Open.Text = "Open";
             this.BTN_Menu_File_Open.Click += new System.EventHandler(this.BTN_Menu_File_Open_Click);
             // 
@@ -360,20 +360,20 @@
             this.BTN_Menu_File_Save.Enabled = false;
             this.BTN_Menu_File_Save.Image = global::VisualBounds.Imaging.PaintBucket.Properties.Resources.disk;
             this.BTN_Menu_File_Save.Name = "BTN_Menu_File_Save";
-            this.BTN_Menu_File_Save.Size = new System.Drawing.Size(103, 22);
+            this.BTN_Menu_File_Save.Size = new System.Drawing.Size(152, 22);
             this.BTN_Menu_File_Save.Text = "Save";
             this.BTN_Menu_File_Save.Click += new System.EventHandler(this.BTN_Menu_File_Save_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(100, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
             // 
             // BTN_Menu_File_Exit
             // 
             this.BTN_Menu_File_Exit.Image = global::VisualBounds.Imaging.PaintBucket.Properties.Resources.door_open;
             this.BTN_Menu_File_Exit.Name = "BTN_Menu_File_Exit";
-            this.BTN_Menu_File_Exit.Size = new System.Drawing.Size(103, 22);
+            this.BTN_Menu_File_Exit.Size = new System.Drawing.Size(152, 22);
             this.BTN_Menu_File_Exit.Text = "Exit";
             this.BTN_Menu_File_Exit.Click += new System.EventHandler(this.BTN_Menu_File_Exit_Click);
             // 
@@ -392,14 +392,14 @@
             this.BTN_Menu_View_Background.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.BTN_Menu_View_Background_Default});
             this.BTN_Menu_View_Background.Name = "BTN_Menu_View_Background";
-            this.BTN_Menu_View_Background.Size = new System.Drawing.Size(138, 22);
+            this.BTN_Menu_View_Background.Size = new System.Drawing.Size(152, 22);
             this.BTN_Menu_View_Background.Text = "Background";
             this.BTN_Menu_View_Background.Click += new System.EventHandler(this.BTN_Menu_View_Background_Click);
             // 
             // BTN_Menu_View_Background_Default
             // 
             this.BTN_Menu_View_Background_Default.Name = "BTN_Menu_View_Background_Default";
-            this.BTN_Menu_View_Background_Default.Size = new System.Drawing.Size(112, 22);
+            this.BTN_Menu_View_Background_Default.Size = new System.Drawing.Size(152, 22);
             this.BTN_Menu_View_Background_Default.Text = "Default";
             this.BTN_Menu_View_Background_Default.Click += new System.EventHandler(this.BTN_Menu_View_Background_Default_Click);
             // 
@@ -422,20 +422,20 @@
             // 
             this.BTN_Menu_Image_Resize.Enabled = false;
             this.BTN_Menu_Image_Resize.Name = "BTN_Menu_Image_Resize";
-            this.BTN_Menu_Image_Resize.Size = new System.Drawing.Size(129, 22);
+            this.BTN_Menu_Image_Resize.Size = new System.Drawing.Size(152, 22);
             this.BTN_Menu_Image_Resize.Text = "Resize";
             // 
             // BTN_Menu_Image_Crop
             // 
             this.BTN_Menu_Image_Crop.Enabled = false;
             this.BTN_Menu_Image_Crop.Name = "BTN_Menu_Image_Crop";
-            this.BTN_Menu_Image_Crop.Size = new System.Drawing.Size(129, 22);
+            this.BTN_Menu_Image_Crop.Size = new System.Drawing.Size(152, 22);
             this.BTN_Menu_Image_Crop.Text = "Crop";
             // 
             // toolStripSeparator6
             // 
             this.toolStripSeparator6.Name = "toolStripSeparator6";
-            this.toolStripSeparator6.Size = new System.Drawing.Size(126, 6);
+            this.toolStripSeparator6.Size = new System.Drawing.Size(149, 6);
             // 
             // BTN_Menu_Image_Transform
             // 
@@ -466,7 +466,6 @@
             this.BTN_Menu_Image_Transform_ColorTransform.Name = "BTN_Menu_Image_Transform_ColorTransform";
             this.BTN_Menu_Image_Transform_ColorTransform.Size = new System.Drawing.Size(161, 22);
             this.BTN_Menu_Image_Transform_ColorTransform.Text = "Color Transform";
-            this.BTN_Menu_Image_Transform_ColorTransform.Click += new System.EventHandler(this.BTN_Menu_Image_Transform_ColorTransform_Click);
             // 
             // BTN_Menu_Utilities
             // 
@@ -485,7 +484,6 @@
             this.BTN_Menu_Utilities_ImageSplitter.Name = "BTN_Menu_Utilities_ImageSplitter";
             this.BTN_Menu_Utilities_ImageSplitter.Size = new System.Drawing.Size(152, 22);
             this.BTN_Menu_Utilities_ImageSplitter.Text = "Image Splitter";
-            this.BTN_Menu_Utilities_ImageSplitter.Click += new System.EventHandler(this.BTN_Menu_Utilities_ImageSplitter_Click);
             // 
             // PANEL_Status
             // 
@@ -522,7 +520,7 @@
             // 
             this.PROGRESS_Status_bar.AutoSize = false;
             this.PROGRESS_Status_bar.Name = "PROGRESS_Status_bar";
-            this.PROGRESS_Status_bar.Size = new System.Drawing.Size(100, 15);
+            this.PROGRESS_Status_bar.Size = new System.Drawing.Size(100, 16);
             // 
             // LBL_Status_Info
             // 
@@ -531,7 +529,6 @@
             this.LBL_Status_Info.Size = new System.Drawing.Size(250, 21);
             this.LBL_Status_Info.Text = "Ready...";
             this.LBL_Status_Info.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.LBL_Status_Info.Visible = false;
             // 
             // LBL_Status_Position_Y
             // 
@@ -562,7 +559,7 @@
             this.LBL_Status_Position_Image.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.LBL_Status_Position_Image.Image = global::VisualBounds.Imaging.PaintBucket.Properties.Resources.chart_empty;
             this.LBL_Status_Position_Image.Name = "LBL_Status_Position_Image";
-            this.LBL_Status_Position_Image.Size = new System.Drawing.Size(16, 21);
+            this.LBL_Status_Position_Image.Size = new System.Drawing.Size(16, 23);
             this.LBL_Status_Position_Image.ToolTipText = "Position relative to the image";
             // 
             // PANEL_Main

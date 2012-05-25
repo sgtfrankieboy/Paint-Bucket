@@ -143,6 +143,7 @@ namespace VisualBounds.Imaging.PaintBucket
                     });
             at.SetColorMatrix(matrix);
 
+
             foreach (KeyValuePair<BitmapInfo, Bitmap> map in Layers)
             {
                 using (Graphics g = Graphics.FromImage(map.Value))
