@@ -15,6 +15,12 @@ namespace VisualBounds.Imaging.PaintBucket
             None
         }
 
+        public enum Foo
+        {
+            toe,
+            bar
+        }
+
         public static Theme CheckTheme()
         {
             if (Win32API.Dwm.DwmIsCompositionEnabled())
