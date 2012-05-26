@@ -44,7 +44,6 @@ namespace VisualBounds.Imaging.PaintBucket
             if ((e.ToolStrip is ContextMenuStrip) ||
                 (e.ToolStrip is ToolStripDropDownMenu))
             {
-                e.Graphics.FillRectangle(Brushes.Red, e.AffectedBounds);
                 e.Graphics.FillRectangle(new SolidBrush(Color.FromArgb(252, 252, 252)), e.AffectedBounds);
                 e.Graphics.FillRectangle(new SolidBrush(Color.FromArgb(255, 255, 255)), new Rectangle(0, 0, 24, e.AffectedBounds.Height));
                 e.Graphics.DrawLine(new Pen(Color.FromArgb(226, 227, 227)), new Point(25, 0), new Point(25, e.AffectedBounds.Height));
@@ -53,12 +52,12 @@ namespace VisualBounds.Imaging.PaintBucket
 
         protected override void OnRenderToolStripBorder(ToolStripRenderEventArgs e)
         {
-            //base.OnRenderToolStripBorder(e);
             if ((e.ToolStrip is ContextMenuStrip) ||
                 (e.ToolStrip is ToolStripDropDownMenu))
             {
                 e.Graphics.DrawRectangle(new Pen(Color.FromArgb(151, 151, 151)), e.AffectedBounds);
             }
+            e.Graphics.FillRectangle(Brushes.Red, e.AffectedBounds);
         }
 
         protected override void OnRenderSeparator(ToolStripSeparatorRenderEventArgs e)

@@ -53,7 +53,6 @@ namespace VisualBounds.Imaging.PaintBucket.UI
 
         protected override void OnRenderToolStripBorder(ToolStripRenderEventArgs e)
         {
-            base.OnRenderToolStripBorder(e);
             if ((e.ToolStrip is ContextMenuStrip) ||
                 (e.ToolStrip is ToolStripDropDownMenu))
             {

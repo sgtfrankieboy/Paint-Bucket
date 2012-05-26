@@ -29,8 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMain));
-            this.imageControl1 = new VisualBounds.Imaging.PaintBucket.UI.ImageControl();
-            this.glassToolstrip3 = new VisualBounds.Imaging.PaintBucket.UI.GlassToolstrip();
+            this.Editor = new VisualBounds.Imaging.PaintBucket.UI.ImageControl();
             this.glassToolstrip2 = new VisualBounds.Imaging.PaintBucket.UI.GlassToolstrip();
             this.BTN_General_Scale = new System.Windows.Forms.ToolStripSplitButton();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
@@ -51,6 +50,7 @@
             this.toolStripMenuItem17 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem18 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem19 = new System.Windows.Forms.ToolStripMenuItem();
+            this.glassToolstrip3 = new VisualBounds.Imaging.PaintBucket.UI.GlassToolstrip();
             this.glassToolstrip1 = new VisualBounds.Imaging.PaintBucket.UI.GlassToolstrip();
             this.BTN_Menu_File = new System.Windows.Forms.ToolStripDropDownButton();
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -58,6 +58,13 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.BTN_Menu_Edit = new System.Windows.Forms.ToolStripDropDownButton();
+            this.BTN_Menu_Edit_Undo = new System.Windows.Forms.ToolStripMenuItem();
+            this.BTN_Menu_Edit_Redo = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.BTN_Menu_Edit_Cut = new System.Windows.Forms.ToolStripMenuItem();
+            this.BTN_Menu_Edit_Copy = new System.Windows.Forms.ToolStripMenuItem();
+            this.BTN_Edit_Menu_Paste = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.BTN_Menu_View = new System.Windows.Forms.ToolStripDropDownButton();
             this.BTN_Menu_Utilities = new System.Windows.Forms.ToolStripDropDownButton();
             this.BTN_Menu_Help = new System.Windows.Forms.ToolStripDropDownButton();
@@ -65,36 +72,34 @@
             this.glassToolstrip1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // imageControl1
+            // Editor
             // 
-            this.imageControl1.AutoScroll = true;
-            this.imageControl1.AutoScrollMinSize = new System.Drawing.Size(1024, 768);
-            this.imageControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.imageControl1.Image = ((System.Drawing.Image)(resources.GetObject("imageControl1.Image")));
-            this.imageControl1.Location = new System.Drawing.Point(0, 50);
-            this.imageControl1.Name = "imageControl1";
-            this.imageControl1.ScaleFactor = 1F;
-            this.imageControl1.Size = new System.Drawing.Size(765, 391);
-            this.imageControl1.TabIndex = 300;
-            // 
-            // glassToolstrip3
-            // 
-            this.glassToolstrip3.BackColor = System.Drawing.Color.Black;
-            this.glassToolstrip3.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.glassToolstrip3.Location = new System.Drawing.Point(0, 441);
-            this.glassToolstrip3.Name = "glassToolstrip3";
-            this.glassToolstrip3.Size = new System.Drawing.Size(765, 25);
-            this.glassToolstrip3.TabIndex = 101;
-            this.glassToolstrip3.Text = "glassToolstrip3";
+            this.Editor.AutoScroll = true;
+            this.Editor.AutoScrollMinSize = new System.Drawing.Size(625, 625);
+            this.Editor.BackColor = System.Drawing.SystemColors.Control;
+            this.Editor.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Editor.DropShadow = true;
+            this.Editor.Image = ((System.Drawing.Image)(resources.GetObject("Editor.Image")));
+            this.Editor.Location = new System.Drawing.Point(0, 50);
+            this.Editor.Name = "Editor";
+            this.Editor.ScaleFactor = 5F;
+            this.Editor.Size = new System.Drawing.Size(891, 412);
+            this.Editor.TabIndex = 300;
+            this.Editor.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Editor_MouseDown);
+            this.Editor.MouseEnter += new System.EventHandler(this.Editor_MouseEnter);
+            this.Editor.MouseLeave += new System.EventHandler(this.Editor_MouseLeave);
+            this.Editor.MouseHover += new System.EventHandler(this.Editor_MouseHover);
+            this.Editor.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Editor_MouseMove);
+            this.Editor.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Editor_MouseUp);
             // 
             // glassToolstrip2
             // 
-            this.glassToolstrip2.BackColor = System.Drawing.Color.Black;
+            this.glassToolstrip2.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.glassToolstrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.BTN_General_Scale});
             this.glassToolstrip2.Location = new System.Drawing.Point(0, 25);
             this.glassToolstrip2.Name = "glassToolstrip2";
-            this.glassToolstrip2.Size = new System.Drawing.Size(765, 25);
+            this.glassToolstrip2.Size = new System.Drawing.Size(891, 25);
             this.glassToolstrip2.TabIndex = 1;
             this.glassToolstrip2.Text = "glassToolstrip2";
             // 
@@ -235,9 +240,21 @@
             this.toolStripMenuItem19.Size = new System.Drawing.Size(108, 22);
             this.toolStripMenuItem19.Text = "3000%";
             // 
+            // glassToolstrip3
+            // 
+            this.glassToolstrip3.BackColor = System.Drawing.Color.Transparent;
+            this.glassToolstrip3.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.glassToolstrip3.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.glassToolstrip3.Location = new System.Drawing.Point(0, 462);
+            this.glassToolstrip3.Name = "glassToolstrip3";
+            this.glassToolstrip3.Size = new System.Drawing.Size(891, 25);
+            this.glassToolstrip3.TabIndex = 101;
+            this.glassToolstrip3.Text = "glassToolstrip3";
+            // 
             // glassToolstrip1
             // 
-            this.glassToolstrip1.BackColor = System.Drawing.Color.Black;
+            this.glassToolstrip1.BackColor = System.Drawing.Color.Transparent;
+            this.glassToolstrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.glassToolstrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.BTN_Menu_File,
             this.BTN_Menu_Edit,
@@ -246,7 +263,7 @@
             this.BTN_Menu_Help});
             this.glassToolstrip1.Location = new System.Drawing.Point(0, 0);
             this.glassToolstrip1.Name = "glassToolstrip1";
-            this.glassToolstrip1.Size = new System.Drawing.Size(765, 25);
+            this.glassToolstrip1.Size = new System.Drawing.Size(891, 25);
             this.glassToolstrip1.TabIndex = 0;
             this.glassToolstrip1.Text = "glassToolstrip1";
             // 
@@ -266,12 +283,14 @@
             // 
             // openToolStripMenuItem
             // 
+            this.openToolStripMenuItem.Image = global::VisualBounds.Imaging.PaintBucket.Properties.Resources.folder_explore;
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
             this.openToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
             this.openToolStripMenuItem.Text = "Open";
             // 
             // saveToolStripMenuItem
             // 
+            this.saveToolStripMenuItem.Image = global::VisualBounds.Imaging.PaintBucket.Properties.Resources.disk;
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
             this.saveToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
             this.saveToolStripMenuItem.Text = "Save";
@@ -283,6 +302,7 @@
             // 
             // exitToolStripMenuItem
             // 
+            this.exitToolStripMenuItem.Image = global::VisualBounds.Imaging.PaintBucket.Properties.Resources.door_open;
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
             this.exitToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
             this.exitToolStripMenuItem.Text = "Exit";
@@ -290,11 +310,69 @@
             // BTN_Menu_Edit
             // 
             this.BTN_Menu_Edit.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.BTN_Menu_Edit.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.BTN_Menu_Edit_Undo,
+            this.BTN_Menu_Edit_Redo,
+            this.toolStripSeparator2,
+            this.BTN_Menu_Edit_Cut,
+            this.BTN_Menu_Edit_Copy,
+            this.BTN_Edit_Menu_Paste,
+            this.toolStripSeparator3});
             this.BTN_Menu_Edit.Image = ((System.Drawing.Image)(resources.GetObject("BTN_Menu_Edit.Image")));
             this.BTN_Menu_Edit.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.BTN_Menu_Edit.Name = "BTN_Menu_Edit";
             this.BTN_Menu_Edit.Size = new System.Drawing.Size(40, 22);
             this.BTN_Menu_Edit.Text = "Edit";
+            // 
+            // BTN_Menu_Edit_Undo
+            // 
+            this.BTN_Menu_Edit_Undo.Image = global::VisualBounds.Imaging.PaintBucket.Properties.Resources.arrow_undo;
+            this.BTN_Menu_Edit_Undo.Name = "BTN_Menu_Edit_Undo";
+            this.BTN_Menu_Edit_Undo.Size = new System.Drawing.Size(152, 22);
+            this.BTN_Menu_Edit_Undo.Text = "Undo";
+            this.BTN_Menu_Edit_Undo.Click += new System.EventHandler(this.BTN_Menu_Edit_Undo_Click);
+            // 
+            // BTN_Menu_Edit_Redo
+            // 
+            this.BTN_Menu_Edit_Redo.Image = global::VisualBounds.Imaging.PaintBucket.Properties.Resources.arrow_redo;
+            this.BTN_Menu_Edit_Redo.Name = "BTN_Menu_Edit_Redo";
+            this.BTN_Menu_Edit_Redo.Size = new System.Drawing.Size(152, 22);
+            this.BTN_Menu_Edit_Redo.Text = "Redo";
+            this.BTN_Menu_Edit_Redo.Click += new System.EventHandler(this.BTN_Menu_Edit_Redo_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(149, 6);
+            // 
+            // BTN_Menu_Edit_Cut
+            // 
+            this.BTN_Menu_Edit_Cut.Image = global::VisualBounds.Imaging.PaintBucket.Properties.Resources.cut;
+            this.BTN_Menu_Edit_Cut.Name = "BTN_Menu_Edit_Cut";
+            this.BTN_Menu_Edit_Cut.Size = new System.Drawing.Size(152, 22);
+            this.BTN_Menu_Edit_Cut.Text = "Cut";
+            this.BTN_Menu_Edit_Cut.Click += new System.EventHandler(this.BTN_Menu_Edit_Cut_Click);
+            // 
+            // BTN_Menu_Edit_Copy
+            // 
+            this.BTN_Menu_Edit_Copy.Image = global::VisualBounds.Imaging.PaintBucket.Properties.Resources.page_copy;
+            this.BTN_Menu_Edit_Copy.Name = "BTN_Menu_Edit_Copy";
+            this.BTN_Menu_Edit_Copy.Size = new System.Drawing.Size(152, 22);
+            this.BTN_Menu_Edit_Copy.Text = "Copy";
+            this.BTN_Menu_Edit_Copy.Click += new System.EventHandler(this.BTN_Menu_Edit_Copy_Click);
+            // 
+            // BTN_Edit_Menu_Paste
+            // 
+            this.BTN_Edit_Menu_Paste.Image = global::VisualBounds.Imaging.PaintBucket.Properties.Resources.page_paste;
+            this.BTN_Edit_Menu_Paste.Name = "BTN_Edit_Menu_Paste";
+            this.BTN_Edit_Menu_Paste.Size = new System.Drawing.Size(152, 22);
+            this.BTN_Edit_Menu_Paste.Text = "Paste";
+            this.BTN_Edit_Menu_Paste.Click += new System.EventHandler(this.BTN_Edit_Menu_Paste_Click);
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(149, 6);
             // 
             // BTN_Menu_View
             // 
@@ -327,14 +405,15 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(765, 466);
-            this.Controls.Add(this.imageControl1);
-            this.Controls.Add(this.glassToolstrip3);
+            this.BackColor = System.Drawing.Color.Black;
+            this.ClientSize = new System.Drawing.Size(891, 487);
+            this.Controls.Add(this.Editor);
             this.Controls.Add(this.glassToolstrip2);
+            this.Controls.Add(this.glassToolstrip3);
             this.Controls.Add(this.glassToolstrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FrmMain";
-            this.Text = "FrmMain";
+            this.Text = "Paint Bucket";
             this.glassToolstrip2.ResumeLayout(false);
             this.glassToolstrip2.PerformLayout();
             this.glassToolstrip1.ResumeLayout(false);
@@ -372,11 +451,18 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem17;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem18;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem19;
-        private UI.ImageControl imageControl1;
+        private UI.ImageControl Editor;
         private UI.GlassToolstrip glassToolstrip3;
         private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem BTN_Menu_Edit_Undo;
+        private System.Windows.Forms.ToolStripMenuItem BTN_Menu_Edit_Redo;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripMenuItem BTN_Menu_Edit_Cut;
+        private System.Windows.Forms.ToolStripMenuItem BTN_Menu_Edit_Copy;
+        private System.Windows.Forms.ToolStripMenuItem BTN_Edit_Menu_Paste;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
     }
 }

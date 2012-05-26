@@ -13,6 +13,7 @@ namespace VisualBounds.Imaging.PaintBucket.UI
         public GlassToolstrip()
         {
             this.Renderer = new GlassToolstripRenderer();
+            this.GripStyle = ToolStripGripStyle.Hidden;
         }
     }
 }

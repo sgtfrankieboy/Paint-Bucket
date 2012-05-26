@@ -52,17 +52,38 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dejavu\Change.cs" />
+    <Compile Include="Dejavu\Collections\Generic\UndoRedoDictionary.cs" />
+    <Compile Include="Dejavu\Collections\Generic\UndoRedoList.cs" />
+    <Compile Include="Dejavu\Command.cs" />
+    <Compile Include="Dejavu\Component1.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Dejavu\Component1.designer.cs">
+      <DependentUpon>Component1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dejavu\Events.cs" />
+    <Compile Include="Dejavu\IUndoRedoMember.cs" />
+    <Compile Include="Dejavu\Log.cs" />
+    <Compile Include="Dejavu\UndoRedoArea.cs" />
+    <Compile Include="Dejavu\UndoRedoManager.cs" />
+    <Compile Include="Dejavu\UndoRedoProperty.cs" />
     <Compile Include="FrmMain.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FrmMain.Designer.cs">
       <DependentUpon>FrmMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="IGraphics\IImage.cs" />
+    <Compile Include="IGraphics\ILayer.cs" />
+    <Compile Include="IGraphics\IList.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UI\Dwm.cs" />
     <Compile Include="UI\GlassButton.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="UI\GlassManager.cs" />
     <Compile Include="UI\GlassToolstrip.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -324,6 +345,14 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Icon.ico" />
+    <None Include="Resources\arrow_undo.png" />
+    <None Include="Resources\arrow_redo.png" />
+    <None Include="Resources\cut.png" />
+    <None Include="Resources\page_copy.png" />
+    <None Include="Resources\page_paste.png" />
+    <None Include="Resources\folder_explore.png" />
+    <None Include="Resources\disk.png" />
+    <None Include="Resources\door_open.png" />
     <Content Include="Windows\Core\Core.csproj" />
     <Content Include="Windows\Core\CustomDictionary.xml" />
     <Content Include="Windows\Shell\CustomDictionary.xml" />
